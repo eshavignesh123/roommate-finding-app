@@ -1,0 +1,23 @@
+.signup-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.signup-page-container form{
+  max-width: 500px;
+  width: 100%;
+  padding: 20px;
+  
+}
+
+.first-row-signup-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center; 
+  width: 100%;
+}
