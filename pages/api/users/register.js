@@ -6,9 +6,20 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: "Only POST requests are allowed" });
   }
 
-  const { name, email, password, location, preferences } = req.body;
+  const contentType = req.headers["content-type"];
+  let body = {};
 
-  if (!name || !email || !password) {
+  if (contentType === "application/json") {
+    body = req.body;
+  } else if (contentType === "application/x-www-form-urlencoded") {
+    body = Object.fromEntries(new URLSearchParams(req.body).entries());
+  } else {
+    return res.status(400).json({ message: "Unsupported content type" });
+  }
+
+  const { first_name, last_name, email, password } = body;
+
+  if (!first_name || !last_name || !email || !password) {
     return res.status(400).json({ message: "Missing required fields" });
   }
 
@@ -23,11 +34,9 @@ export default async function handler(req, res) {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = {
-      name,
+      name: `${first_name} ${last_name}`,
       email,
       password: hashedPassword,
-      location,
-      preferences,
       createdAt: new Date(),
     };
 

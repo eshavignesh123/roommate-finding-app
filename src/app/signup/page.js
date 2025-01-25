@@ -1,11 +1,44 @@
+"use client";
 import Image from "next/image";
 import Link from 'next/link';
 import styles from "../styles/signup.css";
 
+
 export default function Signup() {
+    async function handleSubmit(event) {
+      event.preventDefault(); 
+  
+      // Submit button functionality 
+      const formData = {
+        first_name: document.getElementById("first_name").value,
+        last_name: document.getElementById("last_name").value,
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value,
+      };
+  
+      try {
+        const response = await fetch("/api/users/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+  
+        const data = await response.json();
+        if (!response.ok) {
+          console.error("Error:", data.message);
+        } else {
+          console.log("Success:", data.message);
+          alert(data.message);
+        }
+      } catch (error) {
+        console.error("Error submitting form:", error);
+      }
+    }
   return (
     <div className="signup-page-container">
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="flex first-row-signup-container  mb-5">
           <h1 className = "text-3xl" >Sign Up</h1>
           <a 
