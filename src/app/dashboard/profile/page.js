@@ -3,12 +3,12 @@ import Link from 'next/link';
 
 export default function Profile() {
   return (
-    <div className="min-h-screen bg-gray-800 flex flex-col items-center p-8">
+    <div className="min-h-screen bg-gray-800 flex flex-col items-center p-8 mt-20">
       <div className="bg-gray-900 shadow-md rounded-lg p-6 w-full max-w-6xl relative">
         <Link href='/dashboard'>
             <button className="absolute top-4 left-4 bg-blue-600 p-2 ml-1 rounded-full">← Back</button>
         </Link>
-        <Link href='/profile/edit-profile'>
+        <Link href='/dashboard/profile/edit-profile'>
             <button className="absolute top-4 right-4 text-blue-600 p-2 rounded-full">✎ Edit Profile</button>
         </Link>
         <div className="flex items-center mb-6 mt-12"> 

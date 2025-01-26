@@ -1,6 +1,9 @@
+"use client";
 
-//MAKE THIS RESPONSIVE TO SCREEN SIZE
+import {useRouter} from 'next/navigation';
 export default function Page() {
+
+  
     return (
         <div className="h-[calc(100vh-80px)] bg-gray-800 flex flex-row items-start p-7 mt-20">
             <div className = "flex flex-col justify-start items-start w-1/2 h-full pr-7">

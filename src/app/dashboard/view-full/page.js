@@ -1,8 +1,15 @@
+"use client";
+
+
 import React from 'react';
 import Link from 'next/link';
 
+
+
 export default function Profile() {
+
   return (
+    
     <div className="h-screen bg-gray-800 flex flex-col items-center py-7 m-20">
         <div className="bg-gray-900 shadow-md rounded-lg p-6 w-full relative max-w-6xl">
         <Link href='/dashboard'>

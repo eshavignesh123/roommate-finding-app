@@ -10,7 +10,7 @@ export default function Navbar() {
         </Link>
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
           <div className="relative w-10 h-10 overflow-hidden rounded-full bg-gray-600">
-          <Link href="/profile">
+          <Link href="/dashboard/profile">
             <img className="w-10 h-10 rounded-full" src="#" alt="Profile"></img>
           </Link>
           </div>
