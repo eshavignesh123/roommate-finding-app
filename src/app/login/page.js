@@ -3,18 +3,20 @@ import Image from "next/image";
 import Link from 'next/link';
 import styles from "../styles/login.css";
 import { useState } from "react";
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
+  const router = useRouter(); // navigation
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // handles the form submission 
   async function handleLogin(event) {
-    event.preventDefault(); 
+    event.preventDefault();
 
     try {
       const response = await fetch("/api/users/login", {
-        method: "POST", 
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
@@ -28,6 +30,9 @@ export default function Login() {
       } else {
         alert(data.message); // success message
         console.log("Logged-in user:", data.user);
+
+        // Redirect to the dashboard
+        router.push("/dashboard");
       }
     } catch (error) {
       console.error("Error logging in:", error);
