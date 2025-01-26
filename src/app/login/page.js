@@ -31,6 +31,9 @@ export default function Login() {
         alert(data.message); // success message
         console.log("Logged-in user:", data.user);
 
+        // Store the token
+        localStorage.setItem("token", data.token);
+        
         // Redirect to the dashboard
         router.push("/dashboard");
       }

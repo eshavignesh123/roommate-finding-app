@@ -1,4 +1,5 @@
 import bcrypt from "bcrypt";
+import jwt from 'jsonwebtoken'; // Add jwt import
 import { connectToDatabase } from "../../../lib/mongodb";
 
 export default async function handler(req, res) {
@@ -25,7 +26,10 @@ export default async function handler(req, res) {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    res.status(200).json({ message: "Login successful", user: { name: user.name, email: user.email } });
+    
+    const token = jwt.sign({ id: user._id }, 'secret_key', { expiresIn: '1h' }); // Generate token
+
+    res.status(200).json({ message: 'Login successful', token, user: { name: user.name, email: user.email } });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error" });

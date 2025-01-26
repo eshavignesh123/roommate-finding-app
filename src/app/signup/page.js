@@ -2,9 +2,11 @@
 import Image from "next/image";
 import Link from 'next/link';
 import styles from "../styles/signup.css";
+import { useRouter } from 'next/navigation';
 
 
 export default function Signup() {
+  const router = useRouter(); // navigation
     async function handleSubmit(event) {
       event.preventDefault(); 
   
@@ -31,6 +33,7 @@ export default function Signup() {
         } else {
           console.log("Success:", data.message);
           alert(data.message);
+          router.push("/login");
         }
       } catch (error) {
         console.error("Error submitting form:", error);
