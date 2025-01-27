@@ -1,10 +1,31 @@
-import React from 'react';
+"use client";
+
+import React, { useEffect, useState } from 'react';
+import { fetchUserProfile } from '../../../apiService'; 
 import Link from 'next/link';
 
-export default function Profile() {
+export default function UserProfile() {
+  const [userProfile, setUserProfile] = useState(null);
+
+  useEffect(() => {
+    async function getUserProfile() {
+      try {
+        const profileData = await fetchUserProfile();
+        setUserProfile(profileData.user); // Accessing the user property
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    getUserProfile();
+  }, []);
+
+  if (!userProfile) {
+    return <div className="mt-20">Loading...</div>;
+  }
 
   return (
-    <div className="min-h-screen bg-gray-800 flex flex-col items-center p-8 mt-10 py-7">
+    <div className="min-h-screen bg-gray-800 flex flex-col items-center p-8 mt-20 py-7">
       <div className="bg-gray-900 shadow-md rounded-lg p-6 w-full max-w-6xl relative ">
         <Link href='/dashboard/profile'>
             <button className="absolute top-4 left-4 text-blue-600 p-2 ml-1 rounded-full">← Back</button>
@@ -32,7 +53,7 @@ export default function Profile() {
                     <div className="grid gap-6 mb-1 md:grid-cols-2">
                         <div>
                             <label htmlFor="first_name" className="block mb-0 text-sm font-medium text-gray-900 dark:text-white">First name</label>
-                            <input type="text" id="first_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Jane" />
+                            <input type="text" id="first_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={userProfile.name} />
                         </div>
                         <div>
                             <label htmlFor="last_name" className="block mb-0 text-sm font-medium text-gray-900 dark:text-white">Last name</label>
