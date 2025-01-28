@@ -36,22 +36,34 @@ export default async function handler(req, res) {
             user: {
               name: user.name,
               email: user.email,
+              pronouns: user.pronouns,
               location: user.location,
-              preferences: user.preferences,
+              first: user.first,
+              second: user.second,
+              third: user.third,
+              fourth: user.fourth,
+              fifth: user.fifth,
+              preferences: user.preferences
+              
             },
           });
         }
 
         if (method === "PUT") {
           const { id } = req.user;
-          const { name, location, preferences } = req.body;
+          const { pronouns, location, first, second, third, fourth, fifth, preferences } = req.body;
 
           const updatedUser = await db.collection("users").findOneAndUpdate(
             { _id: new ObjectId(id) },
             {
               $set: {
-                name: name || null,
+                pronouns: pronouns || null,
                 location: location || null,
+                first: first || null,
+                second: second || null,
+                third: third || null,
+                fourth: fourth || null,
+                fifth: fifth || null,
                 preferences: preferences || null,
               },
             },
