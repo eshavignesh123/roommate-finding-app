@@ -66,7 +66,7 @@ export default function UserProfile() {
         <button onClick={handleSave} type="button" className="absolute top-4 right-4 bg-blue-600 p-2 rounded-full">Save</button>
         <div className="flex items-center mb-6 mt-12">
           <div>
-            <img className="w-60 h-80 rounded bg-gray-600 mr-5" src="#" alt="Profile"></img>
+            <img className="ml-14 w-60 h-80 rounded bg-gray-600 mr-5" src="#" alt="Profile"></img>
             <div className="flex-1 flex-col space-y-2 mt-2">
               <UploadForm onSuccess={handleUploadSuccess} />
               {imageId && <ImageDisplay imageId={imageId} />}
