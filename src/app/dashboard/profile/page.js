@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import {useState, useEffect} from 'react'
-import { fetchUserProfile } from '../../apiService'; 
+import { fetchUserProfile } from '../../../../pages/api/users/apiService'; 
 
 export default function Profile() {
 
