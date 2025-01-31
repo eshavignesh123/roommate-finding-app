@@ -22,7 +22,7 @@ export default function UserProfile() {
     async function getUserProfile() {
       try {
         const profileData = await fetchUserProfile();
-        setUserProfile(profileData.user); // Accessing the user property
+        setUserProfile(profileData.user); 
         setPronouns(profileData.user.pronouns);
         setLocation(profileData.user.location);
         setFirst(profileData.user.first);
