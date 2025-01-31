@@ -1,5 +1,10 @@
 export async function fetchUserProfile() {
     const token = localStorage.getItem("token");
+
+    if (!token) {
+      throw new Error("No authentication token found.");
+    }
+
     const response = await fetch("/api/users/profile", {
       method: "GET",
       headers: {
