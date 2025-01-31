@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { fetchUserProfile, updateUserProfile } from '../../../../../pages/api/users/apiService'; 
+import { fetchUserProfile, updateUserProfile } from '../../../apiService'; 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import UploadForm from '../../../components/uploadForm';
